@@ -16,6 +16,8 @@
 package org.lable.codesystem.codereference;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Immutable representation of a coded value with a reference to the standard or code system it is defined in.
@@ -46,7 +48,7 @@ import java.io.Serializable;
  * context where {@link #codeSystemName}, {@link #displayName}, and {@link #originalText} should also be taken into
  * account.
  */
-public class CodeReference implements Referenceable, Serializable {
+public class CodeReference implements Referenceable, Identifiable, Serializable {
     private static final long serialVersionUID = -3006506450060215824L;
 
     private final String codeSystem;
@@ -143,6 +145,14 @@ public class CodeReference implements Referenceable, Serializable {
     @Override
     public CodeReference toCodeReference() {
         return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<String> identifyingStack() {
+        return Arrays.asList(getCodeSystem(), getCode());
     }
 
     @Override

@@ -17,6 +17,8 @@ package org.lable.codesystem.codereference;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.lable.codesystem.codereference.CodeReference.parameterMayNotBeNull;
@@ -39,6 +41,13 @@ public class CodeReferenceTest {
 
         // Returns itself.
         assertThat(codeReference.toCodeReference(), is(codeReference));
+    }
+
+    @Test
+    public void identifiableTest() {
+        CodeReference codeReference = new CodeReference("CS", "CSN", "XXX", "DN", "OT");
+
+        assertThat(codeReference.identifyingStack(), is(Arrays.asList("CS", "XXX")));
     }
 
     @Test
