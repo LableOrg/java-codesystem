@@ -58,6 +58,20 @@ public class CodeReference implements Referenceable, Identifiable, Serializable 
     private final String originalText;
 
     /**
+     * Create a new CodeReference with the minimal set of required fields.
+     * <p>
+     * This minimal constructor should only be used for well-known local code definitions not intended to be exported.
+     * {@link #CodeReference(String, String, String, String)} with all four fields non-null is preferred for most
+     * code standards.
+     *
+     * @param codeSystem Object identifier (OID) reference.
+     * @param code       The coded value itself.
+     */
+    public CodeReference(String codeSystem, String code) {
+        this(codeSystem, null, code, null, null);
+    }
+
+    /**
      * Create a new CodeReference.
      *
      * @param codeSystem  Object identifier (OID) reference.
@@ -93,7 +107,6 @@ public class CodeReference implements Referenceable, Identifiable, Serializable 
                          String displayName, String originalText) {
         parameterMayNotBeNull("codeSystem", codeSystem);
         parameterMayNotBeNull("code", code);
-        parameterMayNotBeNull("displayName", displayName);
 
         this.codeSystem = codeSystem;
         this.codeSystemName = codeSystemName;
@@ -174,7 +187,9 @@ public class CodeReference implements Referenceable, Identifiable, Serializable 
 
     @Override
     public String toString() {
-        return getCodeSystem() + ": " + getCode() + " (" + getDisplayName() + ")";
+        return getDisplayName() == null
+                ? getCodeSystem() + ": " + getCode()
+                : getCodeSystem() + ": " + getCode() + " (" + getDisplayName() + ")";
     }
 
     public static <T> void parameterMayNotBeNull(String name, T parameter) {

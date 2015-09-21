@@ -52,7 +52,7 @@ public class CodeReferenceTest {
 
     @Test
     public void toStringTest() {
-        CodeReference codeReference = new CodeReference("CS", "CSN", "XXX", "DN", "OT");
+        CodeReference codeReference = new CodeReference("CS", "CSN", "XXX", "DN");
         String expected = "CS: XXX (DN)";
 
         assertThat(codeReference.toString(), is(expected));
@@ -60,8 +60,8 @@ public class CodeReferenceTest {
 
     @Test
     public void toStringWithNullFieldsATest() {
-        CodeReference codeReference = new CodeReference("CS", null, "XXX", "DN");
-        String expected = "CS: XXX (DN)";
+        CodeReference codeReference = new CodeReference("CS", "XXX");
+        String expected = "CS: XXX";
 
         assertThat(codeReference.toString(), is(expected));
     }
