@@ -27,7 +27,7 @@
 
   <groupId>org.lable.codesystem</groupId>
   <artifactId>codesystem</artifactId>
-  <version>1.4</version>
+  <version>1.5-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Codesystem Utilities</name>
@@ -55,7 +55,7 @@
     <connection>${scm.url}</connection>
     <url>${scm.url}</url>
     <developerConnection>${scm.url}</developerConnection>
-    <tag>v1.4</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
