@@ -26,7 +26,14 @@ public interface Applicable {
      * @param referenceable Code reference to test against.
      * @return True if the passed code reference can be applied to the code represented by this object.
      */
-    boolean appliesTo(Referenceable referenceable);
+    default boolean appliesTo(Referenceable referenceable) {
+        for (Referenceable applicableType : applicableTypes()) {
+            if (referenceable.equals(applicableType)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * @return A list of code references that can be used together with the codes represented by this class.
